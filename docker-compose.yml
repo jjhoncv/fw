@@ -1,20 +1,20 @@
 version: "3.2"
 services:
   php:
-    build: './docker/php'
+    build: './docker/dev/php'
     networks:
       - backend
     volumes:
       - ./app/server/:/var/www/html/
   apache:
-    build: './docker/apache'
+    build: './docker/dev/apache'
     depends_on:
       - php
       - mysql
     networks:
       - backend
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
       - ./app/server/:/var/www/html/
   mysql:
