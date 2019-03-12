@@ -16,11 +16,11 @@ endef
 
 build.image: ## Construir imagen para development: make build.image
 	docker build \
-		-f docker/node/Dockerfile \
+		-f docker/dev/node/Dockerfile \
 		--no-cache \
 		--build-arg IMAGE=${IMAGE_DOCKER} \
 		-t $(IMAGE_DEV) \
-		docker/node/ \
+		docker/dev/node/ \
 
 npm.install: ## Instalar depedencias npm: make npm.install
 	$(call detect_user) 
@@ -33,6 +33,18 @@ npm.install: ## Instalar depedencias npm: make npm.install
 		-v ${PWD}/app:/app \
 		${IMAGE_DEV} \
 		npm install --production
+
+webpack.build: ## Construye site estatico: make webpack.build
+	$(call detect_user) 
+	docker run \
+		-it \
+		--rm \
+		--workdir /app/client \
+		-u ${USERID}:${USERID} \
+		-v ${PWD}/passwd:/etc/passwd:ro \
+		-v ${PWD}/app:/app \
+		${IMAGE_DEV} \
+		npm run build
 
 start: ## Up the docker containers, use me with: make start
 	docker-compose up -d

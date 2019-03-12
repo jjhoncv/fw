@@ -4,27 +4,38 @@ import { Header } from '../../Components/Header'
 import { Footer } from '../../Components/Footer'
 import { ServiceLogin } from '../../Services/Login'
 
+import styled from 'styled-components';
+
 interface IAdmin {
 
 }
 
-export class Admin extends React.Component<IAdmin> {
-    constructor(props: IAdmin) {
-        super(props)
-    }
+export const AdminStyled = styled.div`
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+`;
 
-    success({ user, password }: IStateLogin) {
-        ServiceLogin(user, password)
-            .then()
-    }
+export const WrapperLogin = styled.div`
+    padding: 20px;
+    border: 1px solid #ccc;
+`;
 
-    render() {
-        return (
-            <div>
+export const Admin = ({ history }) => {
+
+    const success = () => {
+        history.push('/dashboard');
+    };
+
+    return (
+        <AdminStyled>
+            <WrapperLogin>
                 <Header />
                 <Login success={this.success} />
                 <Footer />
-            </div>
-        )
-    }
+            </WrapperLogin>
+        </AdminStyled>
+    )
+
 }

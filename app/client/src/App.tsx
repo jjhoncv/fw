@@ -1,12 +1,8 @@
 import * as React from 'react';
+import { renderRoutes } from 'react-router-config';
 
-import { Admin } from './Containers/Admin';
-
-export const App: React.SFC = () => {
-    return (
-        <>
-            <Admin />
-        </>
-    )
-}
-
+export const App = ({ route }) => (
+    <>
+        {renderRoutes(route.routes)}
+    </>
+)

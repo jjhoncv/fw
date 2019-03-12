@@ -1,8 +1,17 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import { App } from './App';
+import { GlobalStyle } from './../config/style';
+
+import { BrowserRouter as Router } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
+import { routes } from './config/route';
 
 render(
-    <App />,
+    <>
+        <GlobalStyle />
+        <Router>
+            {renderRoutes(routes)}
+        </Router>
+    </>,
     document.getElementById('root'),
 );
