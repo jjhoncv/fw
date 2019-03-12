@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "jsx": "react",
+        "sourceMap": true,
+        "module": "esnext",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "lib": [
+            "es2015",
+            "es2015.promise",
+            "dom"
+        ]
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}
