@@ -9,7 +9,8 @@ module.exports = merge(baseConfig, {
     },
     devServer: {
         open: true,
-        historyApiFallback: true
+        historyApiFallback: true,
+        disableHostCheck: true
     },
     optimization: {
         runtimeChunk: true,
