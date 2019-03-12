@@ -10,7 +10,7 @@ export const routes = [
         component: App,
         routes: [
             {
-                path: '/',
+                path: '',
                 component: Admin,
                 exact: true,
             },

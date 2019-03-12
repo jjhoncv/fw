@@ -32,7 +32,7 @@ export const Admin = ({ history }) => {
         <AdminStyled>
             <WrapperLogin>
                 <Header />
-                <Login success={this.success} />
+                <Login success={success} />
                 <Footer />
             </WrapperLogin>
         </AdminStyled>

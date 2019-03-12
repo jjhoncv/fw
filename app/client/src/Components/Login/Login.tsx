@@ -40,11 +40,11 @@ export class Login extends React.Component<ILogin, IStateLogin> {
                 <FormStyled onSubmit={(e) => this.onSubmit(e)}>
                     <FormItemStyled>
                         <label>Username:</label>
-                        <input type="text" name="user" onChange={(e) => this.handleUser(e)} required />
+                        <input type="text" name="user" onChange={(e) => this.handleUser(e)} />
                     </FormItemStyled>
                     <FormItemStyled>
                         <label>Password:</label>
-                        <input type="password" name="password" onChange={(e) => this.handlePassword(e)} required />
+                        <input type="password" name="password" onChange={(e) => this.handlePassword(e)}  />
                     </FormItemStyled>
                     <FormItemStyled>
                         <input type="submit" value="Enviar" />
