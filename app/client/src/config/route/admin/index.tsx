@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { App } from './../../App';
-import { Admin } from './../../Containers/Admin';
-import { Dashboard } from './../../Containers/Dashboard';
+import { App } from './../../../App';
+import { Dash } from './../../../Components/Dash';
+import { Admin } from './../../../Components/Admin';
 
 const NotFound: React.SFC<{}> = () => <React.Fragment>NotFound</React.Fragment>;
 
@@ -16,7 +16,12 @@ export const routes = [
             },
             {
                 path: '/admin/dashboard',
-                component: Dashboard,
+                component: Dash,
+                exact: true,
+            },
+            {
+                path: '/admin/users',
+                component: Dash,
                 exact: true,
             },
             {

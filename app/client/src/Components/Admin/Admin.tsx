@@ -18,14 +18,15 @@ export const AdminStyled = styled.div`
 `;
 
 export const WrapperLogin = styled.div`
-    padding: 20px;
+    padding: 10px 30px;
     border: 1px solid #ccc;
 `;
 
-export const Admin = ({ history }) => {
+export const Admin = ({ history }   ) => {
 
-    const success = () => {
-        history.push('/admin/dashboard');
+    const success = ({ user, password }: any) => {
+        ServiceLogin(user, password).then()
+        // history.push('/admin/dashboard');
     };
 
     return (

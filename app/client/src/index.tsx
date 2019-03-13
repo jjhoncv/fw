@@ -4,7 +4,7 @@ import { GlobalStyle } from './../config/style';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
-import { routes } from './config/route';
+import { routes } from './config/route/admin';
 
 render(
     <>
