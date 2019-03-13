@@ -25,7 +25,7 @@ export const WrapperLogin = styled.div`
 export const Admin = ({ history }) => {
 
     const success = () => {
-        history.push('/dashboard');
+        history.push('/admin/dashboard');
     };
 
     return (

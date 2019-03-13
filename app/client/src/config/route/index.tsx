@@ -10,12 +10,12 @@ export const routes = [
         component: App,
         routes: [
             {
-                path: '',
+                path: '/admin',
                 component: Admin,
                 exact: true,
             },
             {
-                path: '/dashboard',
+                path: '/admin/dashboard',
                 component: Dashboard,
                 exact: true,
             },
