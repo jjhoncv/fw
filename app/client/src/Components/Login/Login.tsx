@@ -7,7 +7,7 @@ interface ILogin {
 }
 
 export interface IStateLogin {
-    user: string;
+    username: string;
     password: string;
 }
 
@@ -15,13 +15,13 @@ export class Login extends React.Component<ILogin, IStateLogin> {
     constructor(props: ILogin) {
         super(props);
         this.state = {
-            user: '',
+            username: '',
             password: ''
         }
     }
 
     handleUser(e: any) {
-        this.setState({ user: e.target.value })
+        this.setState({ username: e.target.value })
     }
 
     handlePassword(e: any) {
@@ -40,7 +40,7 @@ export class Login extends React.Component<ILogin, IStateLogin> {
                 <FormStyled onSubmit={(e) => this.onSubmit(e)}>
                     <FormItemStyled>
                         <label>Username</label>
-                        <input type="text" name="user" onChange={(e) => this.handleUser(e)} />
+                        <input type="text" name="username" onChange={(e) => this.handleUser(e)} />
                     </FormItemStyled>
                     <FormItemStyled>
                         <label>Password</label>

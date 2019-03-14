@@ -18,11 +18,12 @@ services:
     volumes:
       - ./app/server/:/var/www/html/
   mysql:
-    image: mysql:5.6.40
+    build: './docker/dev/mysql'
     networks:
       - backend
     environment:
       - MYSQL_ROOT_PASSWORD=rootpassword
+      - ./docker/dev/mysql/fw.sql:/docker-entrypoint-initdb.d/fw.sql
   admin:
     image: fw/node:9.11.1-slim
     volumes:
@@ -33,6 +34,21 @@ services:
     command: "npm run start"
     ports:
       - "8081:8081"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on: 
+      - mysql
+    restart: always
+    links:
+      - mysql:mysql
+    ports:
+      - 8181:80
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: rootpassword
+      PMA_HOST: mysql
+    networks:
+      - backend
 
 networks:
   backend:

@@ -1,15 +1,11 @@
 // let url = process.env.API_SESSION;
-let url = "http://localhost:80/api/?login"
+let url = "http://localhost/api/v1/users"
 
 console.log('url', url);
 
 import { axiosAjax } from './../../config/axios';
 
-export function ServiceLogin(user: string, password: string) {
+export function ServiceLogin(username: string, password: string) {
 
-    const params = new URLSearchParams();
-    params.append('user', user);
-    params.append('password', password);
-
-    axiosAjax.post(`${url}`, params);
+    axiosAjax.post(`${url}`, { username, password });
 }

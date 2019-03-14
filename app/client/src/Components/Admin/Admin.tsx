@@ -22,10 +22,10 @@ export const WrapperLogin = styled.div`
     border: 1px solid #ccc;
 `;
 
-export const Admin = ({ history }   ) => {
+export const Admin = ({ history }) => {
 
-    const success = ({ user, password }: any) => {
-        ServiceLogin(user, password).then()
+    const success = ({ username, password }: any) => {
+        ServiceLogin(username, password).then()
         // history.push('/admin/dashboard');
     };
 
