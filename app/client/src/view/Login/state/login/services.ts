@@ -1,8 +1,8 @@
 // let url = process.env.API_SESSION;
 let url = "http://localhost/api/v1/login"
 
-import { axiosAjax } from './../../config/axios';
-import { Login } from './../../Models/Login';
+import { axiosAjax } from './../../../../config/axios';
+import { Login } from './../../models/Login';
 
 export const serviceLogin = {
     async get(username: string, password: string): Promise<Login> {

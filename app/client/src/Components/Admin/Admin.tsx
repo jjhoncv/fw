@@ -6,10 +6,6 @@ import { ServiceLogin } from '../../Services/Login'
 
 import styled from 'styled-components';
 
-interface IAdmin {
-
-}
-
 export const AdminStyled = styled.div`
     display:flex;
     align-items: center;
@@ -23,10 +19,14 @@ export const WrapperLogin = styled.div`
 `;
 
 export const Admin = ({ history }) => {
-
     const success = ({ username, password }: any) => {
-        ServiceLogin(username, password).then()
-        // history.push('/admin/dashboard');
+        ServiceLogin(username, password)
+            .then(({ data }) => {
+                history.push('/admin/dashboard');
+            })
+            .catch((error) => {
+                console.log('Unauthorized');
+            })
     };
 
     return (

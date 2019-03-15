@@ -4,5 +4,5 @@ $_config['server']['host'] = $_SERVER['DOCUMENT_ROOT'] . "/";
 
 define('DBUSER', 'root');
 define('DBPASS', 'rootpassword');
-define('DBHOST', 'localhost');
+define('DBHOST', 'mysql');
 define('DBNAME', 'fw');

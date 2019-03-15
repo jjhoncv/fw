@@ -3,14 +3,14 @@ include_once _model_ . "../config.php";
 class Db
 {
     private $_mysqli,
-    $_query,
-    $_results = array(),
-    $_result = array(),
-    $_record = array(),
-    $_host = DBHOST,
-    $_user = DBUSER,
-    $_pass = DBPASS,
-    $_bd = DBNAME;
+        $_query,
+        $_results = array(),
+        $_result = array(),
+        $_record = array(),
+        $_host = DBHOST,
+        $_user = DBUSER,
+        $_pass = DBPASS,
+        $_bd = DBNAME;
 
     public static $instance;
 
@@ -28,7 +28,8 @@ class Db
             $this->_host,
             $this->_user,
             $this->_pass,
-            $this->_bd);
+            $this->_bd
+        );
         if ($this->_mysqli->connect_error) {
             die($this->_mysqli->connect_error);
         }

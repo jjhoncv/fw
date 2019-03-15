@@ -1,14 +1,8 @@
 import * as React from 'react'
-import { Login, IStateLogin } from '../../Components/Login'
-import { Header } from '../../Components/Header'
-import { Footer } from '../../Components/Footer'
-import { ServiceLogin } from '../../Services/Login'
+
+import { ListUsers } from './ListUsers'
 
 import styled from 'styled-components';
-
-interface IAdmin {
-
-}
 
 export const AdminStyled = styled.div`
     display:flex;
@@ -22,14 +16,35 @@ export const WrapperLogin = styled.div`
     border: 1px solid #ccc;
 `;
 
+export const Page = styled.div`
+    width: 80%;
+    margin: 30px auto 0;
+`;
+
+export const HeadPage = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const MainPage = styled.div`
+    margin-top: 20px;
+`;
+
 export const Users = ({ history }) => {
 
     const success = () => {
-        history.push('/admin/dashboard');
+        history.push('/admin/users/new');
     };
 
     return (
-        <h1>Users</h1>
+        <Page>
+            <HeadPage>
+                <h1>Users</h1>
+                <button onClick={success}>New</button>
+            </HeadPage>
+            <MainPage>
+                {/* <ListUsers /> */}
+            </MainPage>
+        </Page>
     )
-
 }

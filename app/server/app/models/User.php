@@ -2,9 +2,9 @@
 class User
 {
     private $_id,
-    $_name,
-    $_surname,
-    $_login,
+        $_name,
+        $_surname,
+        $_login,
         $_password;
 
     public function __construct($id = 0)
@@ -22,11 +22,15 @@ class User
                 $this->_surname = $row['surname_user'];
                 $this->_login = $row['login_user'];
                 $this->_password = $row['password_user'];
-
             }
         }
     }
 
+    public function getId()
+    {
+        return $this->_id;
+    }
+    
     public function getName()
     {
         return $this->_name;
@@ -51,5 +55,4 @@ class User
     {
         return $this->_name . ' ' . $this->_surname;
     }
-
 }

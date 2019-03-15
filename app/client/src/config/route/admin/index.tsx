@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { App } from './../../../App';
 import { Dash } from './../../../Components/Dash';
-import { Admin } from './../../../Components/Admin';
+import { LoginContainer } from './../../../view/Login/containers/LoginContainer';
 
 const NotFound: React.SFC<{}> = () => <React.Fragment>NotFound</React.Fragment>;
 
@@ -11,7 +11,7 @@ export const routes = [
         routes: [
             {
                 path: '/admin',
-                component: Admin,
+                component: LoginContainer,
                 exact: true,
             },
             {
