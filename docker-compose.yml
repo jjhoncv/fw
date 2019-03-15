@@ -1,13 +1,13 @@
 version: "3.2"
 services:
   php:
-    build: './docker/dev/php'
+    build: "./docker/dev/php"
     networks:
       - backend
     volumes:
       - ./app/server/:/var/www/html/
   apache:
-    build: './docker/dev/apache'
+    build: "./docker/dev/apache"
     depends_on:
       - php
       - mysql
@@ -18,14 +18,16 @@ services:
     volumes:
       - ./app/server/:/var/www/html/
   mysql:
-    build: './docker/dev/mysql'
+    build: "./docker/dev/mysql"
+    working_dir: /
     networks:
       - backend
     environment:
       - MYSQL_ROOT_PASSWORD=rootpassword
-      - ./docker/dev/mysql/fw.sql:/docker-entrypoint-initdb.d/fw.sql
+    volumes: 
+      - /data-mysql:/var/lib/mysql
   admin:
-    image: fw/node:9.11.1-slim
+    build: "./docker/dev/node"
     volumes:
       - ./app:/app
     working_dir: /app/client
@@ -35,8 +37,8 @@ services:
     ports:
       - "8081:8081"
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    depends_on: 
+    build: "./docker/dev/phpmyadmin"
+    depends_on:
       - mysql
     restart: always
     links:

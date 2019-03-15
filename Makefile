@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := help
 
 IMAGE_DOCKER	?= node:9.11.1-slim
-IMAGE_DEV       ?= fw/node:9.11.1-slim
+IMAGE_DEV       ?= fw_node:9.11.1-slim
 
 define detect_user
 	$(eval WHOAMI := $(shell whoami))
@@ -34,6 +34,8 @@ npm.install: ## Instalar depedencias npm: make npm.install
 		${IMAGE_DEV} \
 		npm install --production
 
+
+
 webpack.build: ## Construye site estatico: make webpack.build
 	$(call detect_user) 
 	docker run \
@@ -54,6 +56,9 @@ stop: ## Stop the docker containers, use me with: make stop
 
 logs: ## View logs docker containers, use me with: make logs
 	docker-compose logs -f
+
+logs.mysql: ## View logs docker containers, use me with: make logs
+	docker-compose logs -f mysql
 
 ## Target Help ##
 
