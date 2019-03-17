@@ -1,37 +1,38 @@
 import * as actionTypes from './actionTypes';
+import { User } from './../../models/User';
 
 interface State {
-    logged: boolean;
+    data: User[];
     isFetching: boolean;
     error: boolean;
 }
 
 const initialState: State = {
-    logged: false,
+    data: [],
     isFetching: false,
     error: false
 }
 
 const ROOT = '';
 
-export const login = (state = initialState, action) => {
+export const list = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.FETCH_LOGIN_REQUEST:
+        case actionTypes.FETCH_USERS_REQUEST:
             return {
                 ...state,
                 isFetching: true
             }
-        case actionTypes.FETCH_LOGIN_FAILURE:
+        case actionTypes.FETCH_USERS_FAILURE:
             return {
                 ...state,
                 isFetching: false,
                 error: action.data
             }
-        case actionTypes.FETCH_LOGIN_SUCCESS:
+        case actionTypes.FETCH_USERS_SUCCESS:
             return {
                 isFetching: false,
                 error: false,
-                logged: action.data
+                data: action.data
             }
         default:
             return state;

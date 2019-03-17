@@ -6,9 +6,11 @@ import { Header } from '../../../../Components/Header'
 import { Footer } from '../../../../Components/Footer'
 import { Login } from '../../../../Components/Login'
 import { successLogin } from './../../../../view/Login/state/login/actions'
+import * as selectLogin from './../../state/login/selectors'
 
 interface Props {
-    successLogin: Function
+    successLogin: Function;
+    history: any;
 }
 
 export const AdminStyled = styled.div`
@@ -23,14 +25,24 @@ export const WrapperLogin = styled.div`
     border: 1px solid #ccc;
 `;
 
-class Container extends React.Component<Props> {
+class Container extends React.Component<Props, {}> {
+    constructor(props) {
+        super(props);
+    }
+    componentDidMount() {
+        const { logged, history } = this.props;
+        let token = localStorage.getItem('token')
+        if (token) {
+            history.push('/admin/dashboard')
+        }
+    }
     render(): JSX.Element {
-        console.log('props', this.props.history)
+        const { history, successLogin } = this.props;
         return (
             <AdminStyled>
                 <WrapperLogin>
                     <Header />
-                    <Login success={this.props.successLogin} />
+                    <Login history={history} success={successLogin} />
                     <Footer />
                 </WrapperLogin>
             </AdminStyled>
@@ -38,15 +50,17 @@ class Container extends React.Component<Props> {
     }
 }
 
-// const mapStateToProps = state => ({
-//     isLoggedIn: selectUser.getIsLoggedIn(state)
-// });
+
+
+const mapStateToProps = state => ({
+    logged: selectLogin.getLogged(state)
+});
 
 const mapDispatchToProps = dispatch => ({
-    successLogin: (username, password) => dispatch(successLogin(username, password))
+    successLogin: (username, password, history) => dispatch(successLogin(username, password, history))
 });
 
 export const LoginContainer = connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(Container);

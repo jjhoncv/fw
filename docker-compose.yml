@@ -19,14 +19,11 @@ services:
       - ./app/server/:/var/www/html/
   mysql:
     build: "./docker/dev/mysql"
-    working_dir: /
     networks:
       - backend
     environment:
       - MYSQL_ROOT_PASSWORD=rootpassword
-    volumes: 
-      - /data-mysql:/var/lib/mysql
-  admin:
+  node:
     build: "./docker/dev/node"
     volumes:
       - ./app:/app

@@ -13,7 +13,18 @@ import {
     WrapperFooter
 } from './styled';
 
-export const Dashboard = ({ route }) => {
+import { successLogin } from './../../view/Login/state/login/actions'
+
+
+export const Dashboard = ({ route, history }) => {
+
+    const handleLogOut = () => {
+        localStorage.removeItem('token')
+        setTimeout(() => {
+            history.push('/admin/')
+        }, 1000);
+    }
+
     return (
         <>
             <HeaderStyle>
@@ -40,14 +51,20 @@ export const Dashboard = ({ route }) => {
                                 <li><a href="http://">Item 2</a></li>
                             </ul>
                         </li>
+                        <li><a href="http://">Users</a>
+                            <ul>
+                                <li><a href="/admin/users">User list</a></li>
+                                <li><a href="/admin/user/new">User new</a></li>
+                            </ul>
+                        </li>
                     </ItemList>
                 </NavLeft>
                 <NavRight>
                     <ItemList pos="right">
-                        <li><a href="http://">Users</a>
+                        <li><a href="http://">User xxx</a>
                             <ul>
-                                <li><a href="/admin/users">New User</a></li>
-                                <li><a href="http://">Item 2</a></li>
+                                <li><a href="/admin/profile">Profile</a></li>
+                                <li><a onClick={() => handleLogOut()}>Log out</a></li>
                             </ul>
                         </li>
                     </ItemList>

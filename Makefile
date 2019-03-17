@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := help
 
 IMAGE_DOCKER	?= node:9.11.1-slim
-IMAGE_DEV       ?= fw_node:9.11.1-slim
+IMAGE_DEV       ?= fw_node:latest
 
 define detect_user
 	$(eval WHOAMI := $(shell whoami))
@@ -34,8 +34,6 @@ npm.install: ## Instalar depedencias npm: make npm.install
 		${IMAGE_DEV} \
 		npm install --production
 
-
-
 webpack.build: ## Construye site estatico: make webpack.build
 	$(call detect_user) 
 	docker run \
@@ -47,6 +45,13 @@ webpack.build: ## Construye site estatico: make webpack.build
 		-v ${PWD}/app:/app \
 		${IMAGE_DEV} \
 		npm run build
+
+composer:
+	docker exec -it fw_php_1 composer update
+	@chown -R jhonnatan app/server/ 
+
+start.build: ## Up and build the docker containers, use me with: make start.build
+	docker-compose up --build -d
 
 start: ## Up the docker containers, use me with: make start
 	docker-compose up -d

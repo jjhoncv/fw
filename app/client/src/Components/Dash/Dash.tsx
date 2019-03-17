@@ -5,9 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { routes } from './../../config/route/dashboard';
 
 export const Dash = () => (
-    <>
-        <Router>
-            {renderRoutes(routes)}
-        </Router>
-    </>
+    <Router>
+        {renderRoutes(routes)}
+    </Router>
 )

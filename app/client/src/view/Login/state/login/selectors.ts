@@ -1,1 +1,2 @@
-export const getLogin = (state) => state.payment.province.provinces;
+export const getLogged = (state) => state.login.login.logged
+// state.payment.province.provinces;

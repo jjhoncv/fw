@@ -4,6 +4,7 @@ import { FormStyled, FormItemStyled } from './styled'
 
 interface ILogin {
     success: Function;
+    history: any;
 }
 
 export interface IStateLogin {
@@ -29,9 +30,10 @@ export class Login extends React.Component<ILogin, IStateLogin> {
     }
 
     onSubmit(e: any) {
-        const { success } = this.props;
+        const { success, history } = this.props;
+        const { username, password } = this.state;
         e.preventDefault();
-        success(this.state);
+        success(username, password, history);
     }
 
     render(): JSX.Element {

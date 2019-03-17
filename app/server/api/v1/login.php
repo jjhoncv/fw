@@ -1,4 +1,10 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header("Allow: GET, POST, OPTIONS, PUT, DELETE");
+header("Access-Control-Allow-Credentials: true");
+
 include '../inc.control_top.php';
 require_once _model_ . "Login.php";
 
@@ -17,16 +23,16 @@ switch ($method) {
             $data = array(
                 "error" => array(
                     "status" => $code,
-                    "description" => "Unauthorized"
-                )
+                    "description" => "Unauthorized",
+                ),
             );
 
             if ($login->logged()) {
                 $code = 200;
                 $data = array(
                     "data" => array(
-                        "id" => $login->id()
-                    )
+                        "token" => $login->getToken(),
+                    ),
                 );
             }
 

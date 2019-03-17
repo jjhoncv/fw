@@ -21,6 +21,16 @@ const css = `
     ul {
         list-style-type: none;
     }
+    button {
+        padding: 5px 12px;
+        background: white;
+        border: 1px solid #ccc;
+        &:hover {
+            background: #ddd;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+    }
 `;
 
 const GlobalStyle = createGlobalStyle`${css}`;

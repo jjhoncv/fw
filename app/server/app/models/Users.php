@@ -7,15 +7,13 @@ class Users
 
     public function __construct()
     {
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT id_user FROM users";
         $users = Db::getInstance()->query($sql);
 
         if ($users->count() > 0) {
             $rows = $users->results();
             foreach ($rows as $row) {
-                $this->_users[] = array(
-                    'user' => new User($row['id_user'])
-                );
+                $this->_users[] = new User($row['id_user']);
             }
         }
     }

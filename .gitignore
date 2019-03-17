@@ -5,3 +5,4 @@ package-lock.json
 passwd
 dist
 .config
+vendor
