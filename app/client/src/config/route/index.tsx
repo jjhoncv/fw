@@ -25,32 +25,36 @@ export const routes = [
             },
             {
                 path: '/admin/:page?/:action?',
-                component: () => (
-                    <Router>
-                        {renderRoutes([
-                            {
-                                component: Dashboard,
-                                routes: [
-                                    {
-                                        path: '/admin/dashboard',
-                                        exact: true,
-                                        component: Home,
-                                    },
-                                    {
-                                        path: '/admin/users',
-                                        exact: true,
-                                        component: UserListContainer
-                                    },
-                                    {
-                                        path: '/admin/user/new',
-                                        exact: true,
-                                        component: UserNewContainer
-                                    }
-                                ]
-                            }]
-                        )}
-                    </Router>
-                )
+                component: () => {
+                    if (localStorage.getItem("token")) {
+                        return (<Router>
+                            {renderRoutes([
+                                {
+                                    component: Dashboard,
+                                    routes: [
+                                        {
+                                            path: '/admin/dashboard',
+                                            exact: true,
+                                            component: Home
+                                        },
+                                        {
+                                            path: '/admin/users',
+                                            exact: true,
+                                            component: UserListContainer
+                                        },
+                                        {
+                                            path: '/admin/user/new',
+                                            exact: true,
+                                            component: UserNewContainer
+                                        }
+                                    ]
+                                }]
+                            )}
+                        </Router>)
+                    } else {
+                        location.href = '/admin'
+                    }
+                }
             },
             {
                 path: '*',

@@ -1,11 +1,11 @@
 // let url = process.env.API_SESSION;
-let url = "http://localhost/api/v1/users"
+let url = "http://localhost/api/v1/sections"
 
 import { axiosAjax } from './../../../../config/axios';
-import { User } from './../../models/User';
+import { SectionHeader } from './../../models/SectionHeader';
 
-export const serviceUsers = {
-    async get(): Promise<User[]> {
+export const serviceSectionsHeader = {
+    async get(): Promise<SectionHeader[]> {
         try {
             const { data } = await axiosAjax.get(url, {
                 headers: {

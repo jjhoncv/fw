@@ -20,9 +20,7 @@ export const Dashboard = ({ route, history }) => {
 
     const handleLogOut = () => {
         localStorage.removeItem('token')
-        setTimeout(() => {
-            history.push('/admin/')
-        }, 1000);
+        location.href = '/admin';
     }
 
     return (

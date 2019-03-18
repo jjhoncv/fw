@@ -1,0 +1,1 @@
+export const getSectionsHeader = (state) =>  state.header.list.data

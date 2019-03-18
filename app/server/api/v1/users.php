@@ -2,8 +2,19 @@
 include '../inc.control_top.php';
 require_once _model_ . "User.php";
 require_once _model_ . "Users.php";
+require_once _utils_ . "headers.php";
+
+// require_once './../../vendor/autoload.php';
+
+// use Firebase\JWT\JWT;
 
 $method = $_SERVER["REQUEST_METHOD"];
+
+// $token = get_auth_token();
+
+// $data = JWT::decode($token, SECRET_KEY, array('HS256'));
+
+// $data['userid'];
 
 switch ($method) {
     case 'GET':
