@@ -3,15 +3,5 @@ RewriteRule ^users/?$ users.php [NC,L]
 RewriteRule ^users/([0-9]+)/?$ users.php?id=$1 [NC,L]
 RewriteRule ^login/?$ login.php [NC,L]
 RewriteRule ^login/([0-9]+)/?$ login.php?id=$1 [NC,L]
-RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
-
-
-SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
-Header add Access-Control-Allow-Methods "POST, GET, PUT, OPTIONS, PATCH, DELETE"
-Header add Access-Control-Allow-Origin "*"
-Header add Access-Control-Allow-Credentials "true"
-Header add Access-Control-Allow-Headers "X-Accept-Charset,X-Accept,Content-Type,Credentials"
-
-CGIPassAuth On
-RewriteCond %{REQUEST_METHOD} OPTIONS
-RewriteRule ^(.*)$ $1 [R=200,L]
+RewriteRule ^sections/?$ sections.php [NC,L]
+RewriteRule ^sections/([0-9]+)/?$ sections.php?id=$1 [NC,L]
