@@ -2,7 +2,7 @@
 require_once _utils_ . "token.php";
 require_once _model_ . "Role.php";
 
-class Login
+class Session
 {
     private $_id,
     $_role,
