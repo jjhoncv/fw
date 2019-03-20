@@ -26,7 +26,7 @@ export const routes = [
             {
                 path: '/admin/:page?/:action?',
                 component: () => {
-                    if (localStorage.getItem("token")) {
+                    // if (localStorage.getItem("token")) {
                         return (<Router>
                             {renderRoutes([
                                 {
@@ -51,9 +51,9 @@ export const routes = [
                                 }]
                             )}
                         </Router>)
-                    } else {
-                        location.href = '/admin'
-                    }
+                    // } else {
+                    //     location.href = '/admin'
+                    // }
                 }
             },
             {

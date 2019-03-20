@@ -14,41 +14,70 @@ switch ($method) {
             $section = new Section($id);
             // $user->get();
         } else {
-            $osections = new Sections();
-            $sections = $osections->getSections();
-
-            $code = 401;
-            $data = array(
-                "error" => array(
-                    "status" => $code,
-                    "description" => "Unauthorized",
-                ),
-            );
-
-            if (count($users) > 0) {
-                $code = 200;
-                foreach ($users as $user) {
-                    $list[] = array(
-                        "id" => $user->getId(),
-                        "role" => $user->getRole()->getName(),
-                        "name" => $user->getName(),
-                        "surname" => $user->getSurname(),
-                        "mail" => $user->getMail(),
-                        "photo" => $user->getPhoto(),
-                        "login" => $user->getLogin(),
-                        "reading" => $user->getReading(),
-                        "writing" => $user->getWriting(),
-                    );
-                }
+            $sections = $session->getUser()->getSections();
+            foreach ($sections as $section) {
+                $data[] = array(
+                    'id' => $section->getId(),
+                    'module' => array(
+                        'id' => $section->getModule()->getId(),
+                        'name' => $section->getModule()->getName(),
+                    ),
+                    'name' => $section->getName(),
+                    'url' => $section->getUrl(),
+                    'status' => $section->getStatus(),
+                );
+            }
+            $modules = array();
+            foreach ($data as $row) {
+                // $modules['id'] = $row['module']['id'];
+                $modules['id'][] = $row['id'];
+                $modules['id']['sections'][] = $row;
             }
 
-            $data = array(
-                "data" => $list,
-            );
+            echo "<pre>";
+            print_r($modules);
 
-            http_response_code($code);
-            echo json_encode($data);
+            // http_response_code(200);
+            // echo json_encode(array(
+            //     'data' => $data,
+            // ));
         }
+        // print_r($session->getUser()->getSections());
+        // $osections = new Sections();
+        // $sections = $osections->getSections();
+
+        // $code = 401;
+        // $data = array(
+        //     "error" => array(
+        //         "status" => $code,
+        //         "description" => "Unauthorized",
+        //     ),
+        // );
+
+        // if (count($users) > 0) {
+        //     $code = 200;
+        //     foreach ($users as $user) {
+        //         $list[] = array(
+        //             "id" => $user->getId(),
+        //             "role" => $user->getRole()->getName(),
+        //             "name" => $user->getName(),
+        //             "surname" => $user->getSurname(),
+        //             "mail" => $user->getMail(),
+        //             "photo" => $user->getPhoto(),
+        //             "login" => $user->getLogin(),
+        //             "reading" => $user->getReading(),
+        //             "writing" => $user->getWriting(),
+        //         );
+        //     }
+        // }
+
+        // $data = array(
+        //     "data" => $list,
+        // );
+
+        // http_response_code($code);
+        // echo json_encode($data);
+        // }
         break;
     default:
         // Invalid Request Method

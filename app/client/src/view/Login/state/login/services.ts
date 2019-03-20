@@ -1,5 +1,5 @@
 // let url = process.env.API_SESSION;
-let url = "http://localhost/api/v1/login"
+let url = "http://localhost/api/v1/session"
 
 import { axiosAjax } from './../../../../config/axios';
 import { Login } from './../../models/Login';

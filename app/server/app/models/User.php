@@ -1,5 +1,6 @@
 <?php
 require_once _model_ . "Role.php";
+require_once _model_ . "Section.php";
 
 class User
 {
@@ -12,7 +13,10 @@ class User
     $_login,
     $_password,
     $_reading,
-        $_writing;
+    $_writing,
+
+    $_logged = false,
+    $_sections = array();
 
     public function __construct($id = 0)
     {
@@ -30,13 +34,41 @@ class User
                 $this->_mail = $row['mail_user'];
                 $this->_photo = $row['photo_user'];
                 $this->_login = $row['login_user'];
-                $this->_password = $row['password_user'];
+                $this->_password = md5($row['password_user']);
                 $this->_reading = $row['reading_user'];
                 $this->_writing = $row['writing_user'];
+
+                $sqls = "SELECT id_section FROM users_sections WHERE id_user = '" . $this->_id . "'";
+                $sections = Db::getInstance()->query($sqls);
+
+                if ($sections->count() > 0) {
+                    $rows = $sections->results();
+                    foreach ($rows as $row) {
+                        $this->_sections[] = new Section($row['id_section']);
+                    }
+                }
             }
         }
     }
 
+    public function getModules()
+    {
+        $modules = array();
+        if (is_array($this->_sections) && count($this->_sections)) {
+            foreach ($this->_sections as $key => $value) {
+                if (is_object($value['section'])) {
+                    if (!empty($value['section'])) {
+                        $section = $value['section'];
+                        $modules[] = $section->getModule();
+                    }
+                }
+            }
+        }
+        $modules = array_unique($modules);
+        $modules = implode(",", $modules);
+        return $modules;
+    }
+    
     public function getId()
     {
         return $this->_id;
@@ -52,9 +84,24 @@ class User
         return $this->_name;
     }
 
+    public function getSections()
+    {
+        return $this->_sections;
+    }
+
     public function getSurname()
     {
         return $this->_surname;
+    }
+
+    public function getLoggedIn()
+    {
+        return $this->_logged;
+    }
+
+    public function setLoggedIn($status)
+    {
+        $this->_logged = $status;
     }
 
     public function getMail()
@@ -67,6 +114,11 @@ class User
         return $this->_photo;
     }
 
+    public function setLogin()
+    {
+        return $this->_login;
+    }
+    
     public function getLogin()
     {
         return $this->_login;
@@ -77,11 +129,13 @@ class User
         return $this->_password;
     }
 
-    public function getReading(){
+    public function getReading()
+    {
         return $this->_reading;
     }
 
-    public function getWriting(){
+    public function getWriting()
+    {
         return $this->_writing;
     }
 

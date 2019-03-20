@@ -2,8 +2,11 @@ import { SectionHeader } from './../../models/SectionHeader';
 
 export const FormatSectionHeader = (data): SectionHeader => {
     let dataValue: SectionHeader = {
-        id_section: 0,
-        id_module: 0,
+        id: 0,
+        module: {
+            id: 0,
+            name: ''
+        },
         name: '',
         url: '',
         status: false
@@ -11,8 +14,8 @@ export const FormatSectionHeader = (data): SectionHeader => {
     if (Object.keys(data).length) {
         let dataHeader: SectionHeader = data;
         dataValue = {
-            id_section: dataHeader.id_section,
-            id_module: dataHeader.id_module,
+            id: dataHeader.id,
+            module: dataHeader.module,
             name: dataHeader.name,
             url: dataHeader.url,
             status: dataHeader.status

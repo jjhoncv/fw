@@ -3,7 +3,7 @@ require_once _model_ . 'Module.php';
 
 class Section
 {
-    private $_id, $_name, $_url, $_module;
+    private $_id, $_name, $_url, $_module, $_status;
 
     public function __construct($id = 0)
     {
@@ -20,6 +20,8 @@ class Section
                 $this->_module = new Module($row['id_module']);
                 $this->_name = $row['name_section'];
                 $this->_url = $row['url_section'];
+                $this->_status = $row['status_section'];
+
             }
         }
     }
@@ -37,6 +39,11 @@ class Section
     public function getModule()
     {
         return $this->_module;
+    }
+
+    public function getStatus()
+    {
+        return $this->_status;
     }
 
     public function getUrl()

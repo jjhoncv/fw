@@ -49,6 +49,7 @@ class Db
 
     public function results()
     {
+        $this->_results = array();
         while ($row = $this->_query->fetch_array(MYSQLI_ASSOC)) {
             $this->_results[] = $row;
         }

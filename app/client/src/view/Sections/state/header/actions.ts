@@ -8,7 +8,7 @@ const fetchSectionsHeaderRequest = () => ({
 });
 
 const fetchSectionsHeaderSuccess = (data: SectionHeader[]) => ({
-    type: actionTypes.FETCH_SECTION_HEADER_SUCCESS, 
+    type: actionTypes.FETCH_SECTION_HEADER_SUCCESS,
     data
 });
 

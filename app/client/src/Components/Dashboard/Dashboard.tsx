@@ -13,8 +13,8 @@ import {
     WrapperFooter
 } from './styled';
 
-import { successLogin } from './../../view/Login/state/login/actions'
-
+// import { successLogin } from './../../view/Login/state/login/actions'
+import { HeaderContainer } from './../../view/Sections/containers/HeaderContainer'
 
 export const Dashboard = ({ route, history }) => {
 
@@ -30,32 +30,7 @@ export const Dashboard = ({ route, history }) => {
                     <Logo>Fw</Logo>
                 </LogoWrapper>
                 <NavLeft>
-                    <ItemList>
-                        <li><a href="http://">Menu</a>
-                            <ul>
-                                <li><a href="http://">Item 1</a></li>
-                                <li><a href="http://">Item 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="http://">Banner</a>
-                            <ul>
-                                <li><a href="http://">Item 1</a></li>
-                                <li><a href="http://">Item 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="http://">Paginas</a>
-                            <ul>
-                                <li><a href="http://">Item 1</a></li>
-                                <li><a href="http://">Item 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="http://">Users</a>
-                            <ul>
-                                <li><a href="/admin/users">User list</a></li>
-                                <li><a href="/admin/user/new">User new</a></li>
-                            </ul>
-                        </li>
-                    </ItemList>
+                    <HeaderContainer></HeaderContainer>
                 </NavLeft>
                 <NavRight>
                     <ItemList pos="right">
